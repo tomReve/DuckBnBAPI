@@ -21,7 +21,8 @@ class AppFixtures extends Fixture
                     ->setAddress($faker->address)
                     ->setNbBed($faker->numberBetween(1,4))
                     ->setNbRoom($faker->numberBetween(1,4))
-                    ->setNbTravelerMax($faker->numberBetween(1,4));
+                    ->setNbTravelerMax($faker->numberBetween(1,4))
+                    ->setPicture(base64_encode('assets/images/olivier.jpg'));
             $manager->persist($housing);
         }
 

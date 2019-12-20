@@ -63,6 +63,11 @@ class Housing
      */
     private $creationAt;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $picture;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -195,5 +200,17 @@ class Housing
     public function updateCreateAt()
     {
         $this->creationAt = date("j F Y");
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(string $picture): self
+    {
+        $this->picture = $picture;
+
+        return $this;
     }
 }
