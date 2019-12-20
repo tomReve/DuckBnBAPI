@@ -15,7 +15,7 @@ class AppFixtures extends Fixture
 
         for ($i = 0; $i < 20; $i++) {
             $housing = new Housing();
-            $housing->setTitle($faker->name)
+            $housing->setTitle($faker->streetName)
                     ->setDescription($faker->text)
                     ->setPrice($faker->numberBetween(10,200))
                     ->setAddress($faker->address)

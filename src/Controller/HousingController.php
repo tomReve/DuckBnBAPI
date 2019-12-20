@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Housing;
 use App\Repository\HousingRepository;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
+use FOS\RestBundle\Request\ParamFetcher;
+use Symfony\Component\HttpFoundation\Response;
 
 class HousingController extends AbstractFOSRestController
 {
@@ -19,13 +22,7 @@ class HousingController extends AbstractFOSRestController
 
     public function getHousingsAction()
     {
+        header("Access-Control-Allow-Origin: *");
         return $this->housingRepository->findAll();
     }
-
-    /**
-    public function getHousingsTasksAction(int $id)
-    {
-
-    }
-    **/
 }
