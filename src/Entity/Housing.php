@@ -54,14 +54,14 @@ class Housing
     private $nbBed;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="string", length=255)
      */
-    private $creationAt;
+    private $slug;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $slug;
+    private $creationAt;
 
     public function getId(): ?int
     {
@@ -152,18 +152,6 @@ class Housing
         return $this;
     }
 
-    public function getCreationAt(): ?\DateTimeInterface
-    {
-        return $this->creationAt;
-    }
-
-    public function setCreationAt(\DateTimeInterface $creationAt): self
-    {
-        $this->creationAt = $creationAt;
-
-        return $this;
-    }
-
     public function getSlug(): ?string
     {
         return $this->slug;
@@ -172,6 +160,18 @@ class Housing
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getCreationAt(): ?string
+    {
+        return $this->creationAt;
+    }
+
+    public function setCreationAt(string $creationAt): self
+    {
+        $this->creationAt = $creationAt;
 
         return $this;
     }
@@ -187,5 +187,13 @@ class Housing
             $slugify = new Slugify();
             $this->slug = $slugify->slugify($this->title);
         }
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function updateCreateAt()
+    {
+        $this->creationAt = date("j F Y");
     }
 }

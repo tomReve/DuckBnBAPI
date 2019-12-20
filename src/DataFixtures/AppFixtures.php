@@ -21,8 +21,7 @@ class AppFixtures extends Fixture
                     ->setAddress($faker->address)
                     ->setNbBed($faker->numberBetween(1,4))
                     ->setNbRoom($faker->numberBetween(1,4))
-                    ->setNbTravelerMax($faker->numberBetween(1,4))
-                    ->setCreationAt($faker->dateTime);
+                    ->setNbTravelerMax($faker->numberBetween(1,4));
             $manager->persist($housing);
         }
 
