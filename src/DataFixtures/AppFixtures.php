@@ -15,6 +15,10 @@ class AppFixtures extends Fixture
 
         for ($i = 0; $i < 20; $i++) {
             $housing = new Housing();
+            $path = 'assets/images/olivier.jpg';
+            $type = pathinfo($path, PATHINFO_EXTENSION);
+            $data = file_get_contents($path);
+            $imageEncode = "data:image/".$type.";base64,".base64_encode($data);
             $housing->setTitle($faker->streetName)
                     ->setDescription($faker->text)
                     ->setPrice($faker->numberBetween(10,200))
@@ -22,7 +26,7 @@ class AppFixtures extends Fixture
                     ->setNbBed($faker->numberBetween(1,4))
                     ->setNbRoom($faker->numberBetween(1,4))
                     ->setNbTravelerMax($faker->numberBetween(1,4))
-                    ->setPicture(base64_encode('assets/images/olivier.jpg'));
+                    ->setPicture($imageEncode);
             $manager->persist($housing);
         }
 
