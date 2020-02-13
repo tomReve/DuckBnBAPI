@@ -6,3 +6,8 @@ housing:
   type     : rest
   resource : App\Controller\HousingController
   prefix   : api
+
+user:
+  type: rest
+  resource: App\Controller\UserController
+  prefix: api
