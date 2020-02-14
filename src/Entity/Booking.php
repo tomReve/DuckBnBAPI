@@ -124,4 +124,9 @@ class Booking
 
         return $this;
     }
+
+    public function getNbDays()
+    {
+        return intval(date_diff($this->dateStartAt, $this->dateEndAt)->format('%a'));
+    }
 }
