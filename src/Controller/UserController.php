@@ -28,7 +28,13 @@ class UserController extends AbstractController
         header("Access-Control-Allow-Origin: *");
         $user = $this->userRepository->findBy(['email' => $email, 'password' => $password]);
         if($user) {
-            return $this->json($user);
+            return $this->json(
+                [
+                    'id' => $user[0]->getId(),
+                    'pseudo' => $user[0]->getPseudo(),
+                    'email' => $user[0]->getEmail()
+                ]
+            );
         } else {
             return $this->json(['message' => "L'utilisateur n'a pas été trouvé ".$email, 'code' => 404]);
         }
