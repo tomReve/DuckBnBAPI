@@ -25,12 +25,12 @@ class UserController extends AbstractController
      */
     public function getUserLoginAction($email, $password)
     {
-        header("Access-Control-Allw-Origin: *");
+        header("Access-Control-Allow-Origin: *");
         $user = $this->userRepository->findBy(['email' => $email, 'password' => $password]);
         if($user) {
             return $this->json($user);
         } else {
-            return $this->json(['message' => 'User not found with email '.$email, 'code' => 404]);
+            return $this->json(['message' => "L'utilisateur n'a pas été trouvé ".$email, 'code' => 404]);
         }
     }
 
@@ -43,7 +43,7 @@ class UserController extends AbstractController
         $manager = $this->getDoctrine()->getManager();
 
         if($this->userRepository->findBy(['email' => $email])) {
-            return $this->json(['message' => 'This user already exists', 'code' => 444]);
+            return $this->json(['message' => "Cette email n'est pas disponible, veuillez utilier un autre email", 'code' => 444]);
         } else {
             try {
                 $user = new User();
